@@ -25,7 +25,7 @@ class Config{
 Config::write('db.host', '127.0.0.1');
 Config::write('db.basename', 'pltmh_db');
 Config::write('db.user', 'root');
-Config::write('db.password', 'rahasia');
+Config::write('db.password', '');
 
 class Core{
     public $dbh; 

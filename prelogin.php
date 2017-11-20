@@ -1,26 +1,37 @@
 <!DOCTYPE html>
-<html>
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>UMM Energy | Microhydro Power Plant Monitoring</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="assets/css/style-login.css">
-	<link rel="stylesheet" href="assets/css/animate.css"> 
+		<meta name="description" content="Micro Hydro Power Plant Monitoring using Internet of Things Technology">
+		<meta name="keywords" content="internet of things, energy monitoring, microhydro power plant, opensource hardware, monitoring platform">
+		<meta name="author" content="UMM Energy by Aulia Arif Wardana">
+
+		<title>UMM Energy | Microhydro Power Plant Monitoring</title>
+
+		<link rel="icon" href="assets/img/favicon.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="assets/img/apple-touch-icon-ipad-retina.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="assets/img/apple-touch-icon-iphone-retina.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="assets/img/apple-touch-icon-ipad.png" />
+		<link rel="apple-touch-icon" sizes="57x57" href="assets/img/apple-touch-icon-iphone.png" />
+
+		<link rel="stylesheet" href="assets/css/style-login.css">
+		<link rel="stylesheet" href="assets/css/animate.css"> 
 </head>
 
     <body>
 		 <section class="container">
 			<div class="gambar">
-			<img src="loginlogo.png">
+			<img src="assets/img/loginlogo.png">
 			</div>
 			<div class="login">
 			  <h1>Who are You ?</h1>
 			  <center>
-					<a href="login.php"><img src="admin.png"></a>
-					<a href="/stackholder/index.php"><img src="user.png"></a>
+					<a href="login.php"><img src="assets/img/admin.png"></a>
+					<a href="/stakeholder/index.php"><img src="assets/img/user.png"></a>
 			  </center>
 			</div>
 

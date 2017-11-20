@@ -1,6 +1,6 @@
 <?php
 if (strstr($_SERVER["PHP_SELF"], "/includes/")) die ("Istighfar, jangan di hack. Makasih :)");
-include_once('config.php');
+include_once('_connect-db.php');
 
 function sec_session_start() {
     $session_name = 'sec_session_id';
