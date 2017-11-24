@@ -20,6 +20,7 @@
 		<link href="assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
 		<link href="assets/css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet" />
 		<link href="assets/css/font-awesome/font-awesome.min.css" rel="stylesheet" />
+        <link href="assets/css/data-table/jquery.dataTables.css" rel="stylesheet" />
 		<link href="assets/css/style-main.css" rel="stylesheet" />
 		<link href="assets/css/style_responsive.css" rel="stylesheet" />
 		<link href="assets/css/style_default.css" rel="stylesheet" id="style_color" />
