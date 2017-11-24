@@ -40,7 +40,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="about.php"><i class="icon-user"></i> About Us</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="includes/logout.php"><i class="icon-key"></i> Log Out</a></li>
+                                    <li><a href="logout.php"><i class="icon-key"></i> Log Out</a></li>
                                 </ul>
                             </li>
                         </ul>
