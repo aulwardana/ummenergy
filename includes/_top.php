@@ -1,3 +1,35 @@
+<?php 
+include_once('includes/_connect-db.php');
+include_once('includes/_session-web.php');
+
+sec_session_start();
+$core = Core::getInstance();
+
+if (login_check() == true) {
+    if (isset($_SESSION['user_id'], $_SESSION['username'], $_SESSION['login_string'])) {
+        $user_id = $_SESSION['user_id'];
+        $login_string = $_SESSION['login_string'];
+        $username = $_SESSION['username'];
+
+        if ($stmt = $core->dbh->prepare("SELECT role FROM account WHERE id_account = :id LIMIT 1")) {
+            $stmt->bindParam(':id', $user_id);
+            $stmt->execute();
+
+            if ($stmt->rowCount() == 1) {
+              $row = $stmt->fetchAll(PDO::FETCH_NUM);
+ 
+              foreach($row as $row){
+                  $role=$row[0];
+              }
+            }
+        }
+    }
+} else {
+    header ("location:index.php");
+}
+
+?>
+
     <body class="fixed-top">    
         <div id="header" class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
@@ -34,7 +66,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="assets/img/avatar1_small.jpg" alt="">
-                                    <span class="username">aul</span>
+                                    <span class="username"><?php echo $username; ?></span>
                                 <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">

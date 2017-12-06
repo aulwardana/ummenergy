@@ -6,7 +6,7 @@ sec_session_start();
 
 if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){
   //your site secret key
-  $secret = '6LdZmjkUAAAAACVRdePkpqXRKij0G3tMhLhpqqN5';
+  $secret = '6LcY9zsUAAAAANfQkfScjTml6XlAXbO0VpvHE9dP';
   //get verify response data
   $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
   $responseData = json_decode($verifyResponse);
@@ -52,9 +52,6 @@ if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'
 
 				<link rel="stylesheet" href="assets/css/style-login.css">
 				<link rel="stylesheet" href="assets/css/animate.css"> 
-
-        <script type="text/JavaScript" src="assets/js/sha512.js"></script> 
-        <script type="text/JavaScript" src="assets/js/forms.js"></script> 
 				<script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
     <body>
@@ -74,10 +71,10 @@ if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'
 							<p><input type="password" name="password" id="password" value="" placeholder="Password" /></p>
 							<p>
 								<div class="form-group has-feedback">
-									<div class="g-recaptcha" data-sitekey="6LdZmjkUAAAAAL5Q0DKCe968KMY1KobOdMyrK4Y8"></div>
+									<div class="g-recaptcha" data-sitekey="6LcY9zsUAAAAAEkPMHrulbOmelsdP0srBd7aJ_G5"></div>
 								</div>
 							</p>
-							<p class="submit"><input type="submit" name="submit" value="Login" onclick="formhash(this.form, this.form.password);" /></p>
+							<p class="submit"><input type="submit" name="submit" value="Login" /></p>
 						</div>
 
 						<div class="login-help">
