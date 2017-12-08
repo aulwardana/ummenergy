@@ -3,6 +3,39 @@ include_once('includes/_header.php');
 include_once('includes/_top.php');
 ?>
 
+<script>
+    $(document).ready(function () {
+        initDataR();
+
+        dataserWattR = [
+            { label: "Real Power:", data: wattR, lines:{fill:true, lineWidth:1.2}, color: "#00FF00" }       
+        ];
+        
+        datasetVoltampereR = [
+            { label: "Apparent Power:", data: voltampereR, lines:{fill:true, lineWidth:1.2}, color: "#f6a00a" }        
+        ];
+        
+        datasetCosphiR = [
+            { label: "Power Factor:", data: cosphiR, lines:{fill:true, lineWidth:1.2}, color: "#f60af3" }
+        ];
+        
+        datasetVrmsR = [
+            { label: "Voltage:", data: vrmsR, lines:{fill:true, lineWidth:1.2}, color: "#0044FF" }
+        ];
+        
+        datasetIrmsR = [
+            { label: "Ampere:", data: irmsR, lines:{fill:true, lineWidth:1.2}, color: "#FF0000" }    
+        ];
+		
+		$.plot($("#phaseRwatt"), dataserWattR, options);
+        $.plot($("#phaseRvoltampere"), datasetVoltampereR, options);
+        $.plot($("#phaseRcosphi"), datasetCosphiR, options);
+        $.plot($("#phaseRvrms"), datasetVrmsR, options);
+        $.plot($("#phaseRirms"), datasetIrmsR, options);
+        setTimeout(GetDataRall, updateIntervalR);
+	});
+</script>
+
         <div id="container" class="row-fluid">
             <?php 
             include_once('includes/_sidebar.php');
@@ -42,7 +75,7 @@ include_once('includes/_top.php');
                                 </div>
                                 <div class="widget-body">
                                     <div id="site_statistics_content" class="show">
-                                        <div id="placeholder" class="chart"></div>
+                                        <div id="phaseRwatt" class="chart"></div>
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +89,7 @@ include_once('includes/_top.php');
                                 </div>
                                 <div class="widget-body">
                                     <div id="site_statistics_content" class="show">
-                                        <div id="placeholder2" class="chart"></div>
+                                        <div id="phaseRvoltampere" class="chart"></div>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +103,7 @@ include_once('includes/_top.php');
                                 </div>
                                 <div class="widget-body">
                                     <div id="site_statistics_content" class="show">
-                                        <div id="placeholder3" class="chart"></div>
+                                        <div id="phaseRcosphi" class="chart"></div>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +117,7 @@ include_once('includes/_top.php');
                                 </div>
                                 <div class="widget-body">
                                     <div id="site_statistics_content" class="show">
-                                        <div id="placeholder4" class="chart"></div>
+                                        <div id="phaseRvrms" class="chart"></div>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +131,7 @@ include_once('includes/_top.php');
                                 </div>
                                 <div class="widget-body">
                                     <div id="site_statistics_content" class="show">
-                                        <div id="placeholder5" class="chart"></div>
+                                        <div id="phaseRirms" class="chart"></div>
                                     </div>
                                 </div>
                             </div>

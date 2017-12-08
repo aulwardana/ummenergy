@@ -44,7 +44,7 @@
 			   <a href="http://ft.umm.ac.id" target="_blank">Fakultas Teknik UMM</a>
 			 </p>
 			  <p class="about-author">
-			   &copy; 2014  -
+			   &copy; 2014  -  <?php echo date('Y',time()); ?>
 			   <a href="http://www.ummenergy.com" target="_blank">UMM Energy</a><br>
 			   <a href="http://www.facebook.com/indoraya" target="_blank">Agus Eko Minarno, M. Kom.</a>
 			   <a href="https://id.linkedin.com/in/aulwardana" target="_blank">Aulia Arif Wardana</a><br/>

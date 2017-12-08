@@ -1,5 +1,5 @@
         <div id="footer">
-            2014 - 2017 &copy; UMM Energy.
+            2014 - <?php echo date('Y',time()); ?> &copy; UMM Energy.
             <div class="span pull-right">
                 <span class="go-top"><i class="icon-arrow-up"></i></span>
             </div>
