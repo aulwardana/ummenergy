@@ -1,5 +1,5 @@
 <?php
-   include("includes/_connect-db.php");
+   include("../includes/_connect-db.php");
 
    $core = Core::getInstance();
 
@@ -12,7 +12,7 @@
 
         if (empty($msg)) {
   
-            if ($insert_stmt = $core->dbh->prepare("INSERT INTO pltmh_data (watt, voltampere, cosphi, volt, ampere) VALUES (?, ?, ?, ?, ?)")) {
+            if ($insert_stmt = $core->dbh->prepare("INSERT INTO pltmh_data_t (watt, voltampere, cosphi, volt, ampere) VALUES (?, ?, ?, ?, ?)")) {
                 $insert_stmt->bindParam('1', $watt);
                 $insert_stmt->bindParam('2', $voltampere);
                 $insert_stmt->bindParam('3', $cosphi);
@@ -23,7 +23,7 @@
                 }
             }
   
-            header ("location:/sensing/_sensing-data.php");
+            header ("location:./_sensing-get-pltmh-t.php");
             exit();
         }
   

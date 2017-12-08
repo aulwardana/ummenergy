@@ -87,7 +87,7 @@ include_once('includes/_top.php');
 									</div>
 									<div class="widget-body">
 										<div id="site_statistics_content" class="show">
-											<div id="placeholder" class="chart"></div>
+											<div id="phaseRAll" class="chart"></div>
 										</div>
 									</div>
 								</div>
@@ -101,7 +101,7 @@ include_once('includes/_top.php');
 									</div>
 									<div class="widget-body">
 										<div id="site_statistics_content" class="show">
-											<div id="placeholder3" class="chart"></div>
+											<div id="phaseSAll" class="chart"></div>
 										</div>
 									</div>
 								</div>
@@ -115,7 +115,7 @@ include_once('includes/_top.php');
 									</div>
 									<div class="widget-body">
 										<div id="site_statistics_content" class="show">
-											<div id="placeholder4" class="chart"></div>
+											<div id="phaseTAll" class="chart"></div>
 										</div>
 									</div>
 								</div>
@@ -129,7 +129,7 @@ include_once('includes/_top.php');
 									</div>
 									<div class="widget-body">
 										<div id="site_statistics_content" class="show">
-											<div id="placeholder2" class="chart"></div>
+											<div id="temperatureData" class="chart"></div>
 										</div>
 									</div>
 								</div>
