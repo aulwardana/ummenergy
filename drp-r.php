@@ -3,6 +3,39 @@ include_once('includes/_header.php');
 include_once('includes/_top.php');
 ?>
 
+<script>
+    $(document).ready(function() {
+        $('#tablePhaseR').DataTable( {
+            ajax:           './sensing/_table-get-pltmh-r.php',
+            deferRender:    true,
+            scrollY:        200,
+            scrollCollapse: true,
+            scroller:       true,
+            initComplete: function () {
+                this.api().row( 1000 ).scrollTo();
+            }
+        } );
+        jQuery( "#from" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 1,
+            dateFormat: "yy-mm-dd",
+            onClose: function( selectedDate ) {
+            $( "#to" ).datepicker( "option", "minDate", selectedDate );
+            }
+        });
+        jQuery( "#to" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 1,
+            dateFormat: "yy-mm-dd",
+            onClose: function( selectedDate ) {
+            jQuery( "#from" ).datepicker( "option", "maxDate", selectedDate );
+            }
+        });
+    } );
+</script>
+
         <div id="container" class="row-fluid">
             <?php 
             include_once('includes/_sidebar.php');
@@ -42,19 +75,18 @@ include_once('includes/_top.php');
                                         </span>
                                     </div>
                                     <div class="widget-body">
-                                        <table id="conto">
+                                        <table id="tablePhaseR" class="display" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
+                                                    <th>ID</th>
                                                     <th>Date</th>
-                                                    <th>Real Power</th>
-                                                    <th>Apparent Power</th>
-                                                    <th>Power Factor</th>
-                                                    <th>Voltage</th>
+                                                    <th>Watt</th>
+                                                    <th>Volt Ampere</th>
+                                                    <th>Cosphi</th>
+                                                    <th>Volt</th>
                                                     <th>Ampere</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -67,7 +99,7 @@ include_once('includes/_top.php');
                                         </span>
                                     </div>
                                     <div class="widget-body">
-                                        <form method="post" action="exportxls.php">
+                                        <form method="post" action="./sensing/_export-xls-r.php">
                                         <p>Select a date range: </p><label style="color:#FFF;" for="from">From</label>
                                         From:&nbsp<input type="text" id="from" name="from" />
                                         <label style="color:#FFF;" for="to" >to</label>

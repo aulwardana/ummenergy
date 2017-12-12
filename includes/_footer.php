@@ -12,8 +12,8 @@
 		<script src="assets/js/flot/jquery.flot.js"></script>
         <script src="assets/js/flot/jquery.flot.time.js"></script>
 		<script src="assets/js/scripts.js"></script>
-		<script src="assets/js/data-table/jquery.dataTables.js"></script>
-		<script src="assets/js/data-table/dataTables.tableTools.js"></script>
+		<script src="assets/js/data-table/jquery.dataTables.min.js"></script>
+		<script src="assets/js/data-table/dataTables.scroller.min.js"></script>
 		<script>
 			jQuery(document).ready(function() {
 				App.init();
