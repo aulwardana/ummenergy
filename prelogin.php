@@ -36,12 +36,12 @@
 			</div>
 
 			<div class="login-help">
-			  <p>Welcome to Microhydro Power Plant Monitoring Website.</p>
+			  <p>Welcome to Microhydro Power Plant Monitoring Website. The Internet of Things Research Project from Faculty of Enginering, University of Muhammadiyah Malang, Indonesia</p>
 			</div>
 
 		   <section class="about">
 			 <p class="about-links">
-			   <a href="http://ft.umm.ac.id" target="_blank">Fakultas Teknik UMM</a>
+			   <a href="http://ft.umm.ac.id" target="_blank">Fakultas of Engineering, UMM</a>
 			 </p>
 			  <p class="about-author">
 			   &copy; 2014  -  <?php echo date('Y',time()); ?>

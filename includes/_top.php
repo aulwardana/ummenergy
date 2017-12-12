@@ -2,6 +2,11 @@
 include_once('includes/_connect-db.php');
 include_once('includes/_session-web.php');
 
+//securing include file from direct access
+if (strstr($_SERVER["PHP_SELF"], "/includes/")) {
+    die ("Istighfar, jangan di hack. Makasih :)");
+}
+
 sec_session_start();
 $core = Core::getInstance();
 

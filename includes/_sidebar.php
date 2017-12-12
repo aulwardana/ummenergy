@@ -1,3 +1,9 @@
+<?php
+//securing include file from direct access
+if (strstr($_SERVER["PHP_SELF"], "/includes/")) {
+    die ("Istighfar, jangan di hack. Makasih :)");
+}
+?>
             <div id="sidebar" class="nav-collapse collapse">
                 <div class="sidebar-toggler hidden-phone"></div>
                     <ul class="sidebar-menu">
