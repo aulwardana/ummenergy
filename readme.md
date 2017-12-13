@@ -18,12 +18,12 @@ For hardware program and schematic source you can go to [this link](http://www.u
 
 ## Application Feature
 1. 3 Phase Monitoring.
-2. Realtime Monitoring Chart.
-3. Statistic Chart from Watt.
-4. Show Data in Table.
-5. Export Data to Excel.
-6. Hardware Temperature Monitoring.
-7. Email Notification.
-8. Database Backup.
-9. User Management.
+2. Realtime Monitoring Chart. (Admin & Stakeholder)
+3. Statistic Chart from Watt. (Admin & Stakeholder)
+4. Show Data in Table. (Admin & Stakeholder)
+5. Export Data to Excel. (Admin)
+6. Hardware Temperature Monitoring. (Admin & Stakeholder)
+7. Email Notification. (Admin)
+8. Database Backup. (Admin)
+9. User Management. (Admin)
 10. Using Opensource Hardware from [Open Energy Monitor](https://openenergymonitor.org/ "Open Energy Monitor").
