@@ -10,8 +10,6 @@ $stmt_xls->execute();
 $header = '';
 $data ='';
 
-//$fields = $stmt_xls->fetchColumn();
-
 foreach ( range(0, $stmt_xls->columnCount() - 1) as $column_index ){
     $all_column_header[] = $stmt_xls->getColumnMeta($column_index);
     $column_header[] = implode(',', $all_column_header[$column_index]);
