@@ -1,18 +1,21 @@
-$(function() {
     //watt : realpower (Watt (Joule/Detik)) || voltampere : apparentpower (VA) || cosphi : faktordaya (Tidak memiliki satuan) || Vrms : tegangan rata2 (Volt (V)) || Irms : arus (Ampere (A)) 
-    var watt = [], voltampere = [], cosphi = [], vrms = [], irms = [], suhu = [];
-    var watt3 = [], voltampere3 = [], cosphi3 = [], vrms3 = [], irms3 = [];
-    var watt4 = [], voltampere4 = [], cosphi4 = [], vrms4 = [], irms4 = [];
-    var dataset, dataset1, dataset2, dataset3;
-    var totalPoints = 100, totalPoints2 = 100, totalPoints3 = 100, totalPoints4 = 100;
-    var updateInterval = 5000;
-    var updateInterval2 = 5000;
-    var updateInterval3 = 5000;
-    var updateInterval4 = 5000;
-    var now = new Date().getTime();
-    var now2 = new Date().getTime();
-    var now3 = new Date().getTime();
-    var now4 = new Date().getTime();
+    var wattR = [], voltampereR = [], cosphiR = [], vrmsR = [], irmsR = [];
+    var wattS = [], voltampereS = [], cosphiS = [], vrmsS = [], irmsS = [];
+    var wattT = [], voltampereT = [], cosphiT = [], vrmsT = [], irmsT = [];
+    var temperature = [];
+    var datasetR, datasetS, datasetT, datasetTemp;
+    var dataserWattR, datasetVoltampereR, datasetCosphiR, datasetVrmsR, datasetIrmsR;
+    var dataserWattS, datasetVoltampereS, datasetCosphiS, datasetVrmsS, datasetIrmsS;
+    var dataserWattT, datasetVoltampereT, datasetCosphiT, datasetVrmsT, datasetIrmsT;
+    var totalPointsR = 100, totalPointsS = 100, totalPointsT = 100, totalPointsTemp = 100;
+    var updateIntervalR = 5000;
+    var updateIntervalS = 5000;
+    var updateIntervalT = 5000;
+    var updateIntervalTemp = 5000;
+    var nowR = new Date().getTime();
+    var nowS = new Date().getTime();
+    var nowT = new Date().getTime();
+    var nowTemp = new Date().getTime();
 
     var options = {
         series: {
@@ -105,7 +108,7 @@ $(function() {
         }
     };
     
-    var options2 = {
+    var optionsTemp = {
         series: {
             lines: {
                 lineWidth: 1.2
@@ -162,276 +165,432 @@ $(function() {
         }
     };
 
-    function initData() {
-        for (var i = 0; i < totalPoints; i++) {
-            var temp = [now += updateInterval, 0];
+    function initDataR() {
+        for (var i = 0; i < totalPointsR; i++) {
+            var tempR = [nowR += updateIntervalR, 0];
 
-            watt.push(temp);
-            voltampere.push(temp);
-            cosphi.push(temp);
-            vrms.push(temp);
-            irms.push(temp);
+            wattR.push(tempR);
+            voltampereR.push(tempR);
+            cosphiR.push(tempR);
+            vrmsR.push(tempR);
+            irmsR.push(tempR);
+        }
+    }
+
+    function initDataS() {
+        for (var l = 0; l < totalPointsS; l++) {
+            var tempS = [nowS += updateIntervalS, 0];
+
+            wattS.push(tempS);
+            voltampereS.push(tempS);
+            cosphiS.push(tempS);
+            vrmsS.push(tempS);
+            irmsS.push(tempS);
         }
     }
     
-    function initData2() {
-        for (var j = 0; j < totalPoints2; j++) {
-            var temp2 = [now2 += updateInterval2, 0];
+    function initDataT() {
+        for (var r = 0; r < totalPointsT; r++) {
+            var tempT = [nowT += updateIntervalT, 0];
 
-            suhu.push(temp2);
+            wattT.push(tempT);
+            voltampereT.push(tempT);
+            cosphiT.push(tempT);
+            vrmsT.push(tempT);
+            irmsT.push(tempT);
         }
     }
     
-    function initData3() {
-        for (var l = 0; l < totalPoints3; l++) {
-            var temp3 = [now3 += updateInterval3, 0];
+    function initDataTemp() {
+        for (var j = 0; j < totalPointsTemp; j++) {
+            var tempTemp = [nowTemp += updateIntervalTemp, 0];
 
-            watt3.push(temp3);
-            voltampere3.push(temp3);
-            cosphi3.push(temp3);
-            vrms3.push(temp3);
-            irms3.push(temp3);
-        }
-    }
-    
-    function initData4() {
-        for (var r = 0; r < totalPoints3; r++) {
-            var temp4 = [now4 += updateInterval4, 0];
-
-            watt4.push(temp4);
-            voltampere4.push(temp4);
-            cosphi4.push(temp4);
-            vrms4.push(temp4);
-            irms4.push(temp4);
+            temperature.push(tempTemp);
         }
     }
 
 
-    function GetData() {
+    function GetDataR() {
         $.ajaxSetup({ cache: false });
 
         $.ajax({
-            url: "http://pltmh.ummenergy.com/jsonchart.php",
+            url: "http://localhost/ummenergy/sensing/_sensing-pltmh-data-r.php",
             dataType: 'json',
-            success: update,
+            success: updateR,
             error: function () {
-                setTimeout(GetData, updateInterval);
+                setTimeout(GetDataR, updateIntervalR);
+            }
+        });
+    }
+
+    function GetDataRall() {
+        $.ajaxSetup({ cache: false });
+
+        $.ajax({
+            url: "http://localhost/ummenergy/sensing/_sensing-pltmh-data-r.php",
+            dataType: 'json',
+            success: updateRall,
+            error: function () {
+                setTimeout(GetDataRall, updateIntervalR);
+            }
+        });
+    }
+
+    function GetDataS() {
+        $.ajaxSetup({ cache: false });
+
+        $.ajax({
+            url: "http://localhost/ummenergy/sensing/_sensing-pltmh-data-s.php",
+            dataType: 'json',
+            success: updateS,
+            error: function () {
+                setTimeout(GetDataS, updateIntervalS);
+            }
+        });
+    }
+
+    function GetDataSall() {
+        $.ajaxSetup({ cache: false });
+
+        $.ajax({
+            url: "http://localhost/ummenergy/sensing/_sensing-pltmh-data-s.php",
+            dataType: 'json',
+            success: updateSall,
+            error: function () {
+                setTimeout(GetDataSall, updateIntervalS);
             }
         });
     }
     
-    function GetData2() {
+    function GetDataT() {
         $.ajaxSetup({ cache: false });
 
         $.ajax({
-            url: "http://pltmh.ummenergy.com/jsonsuhuchart.php",
+            url: "http://localhost/ummenergy/sensing/_sensing-pltmh-data-t.php",
             dataType: 'json',
-            success: update2,
+            success: updateT,
             error: function () {
-                setTimeout(GetData2, updateInterval2);
+                setTimeout(GetDataT, updateIntervalT);
+            }
+        });
+    }
+
+    function GetDataTall() {
+        $.ajaxSetup({ cache: false });
+
+        $.ajax({
+            url: "http://localhost/ummenergy/sensing/_sensing-pltmh-data-t.php",
+            dataType: 'json',
+            success: updateTall,
+            error: function () {
+                setTimeout(GetDataTall, updateIntervalT);
             }
         });
     }
     
-    function GetData3() {
+    function GetDataTemp() {
         $.ajaxSetup({ cache: false });
 
         $.ajax({
-            url: "http://pltmh.ummenergy.com/jsonchart2.php",
+            url: "http://localhost/ummenergy/sensing/_sensing-temp-data.php",
             dataType: 'json',
-            success: update3,
+            success: updateTemp,
             error: function () {
-                setTimeout(GetData3, updateInterval3);
+                setTimeout(GetDataTemp, updateIntervalTemp);
             }
         });
     }
     
-    function GetData4() {
-        $.ajaxSetup({ cache: false });
+    var tempR;
 
-        $.ajax({
-            url: "http://pltmh.ummenergy.com/jsonchart3.php",
-            dataType: 'json',
-            success: update4,
-            error: function () {
-                setTimeout(GetData4, updateInterval4);
-            }
-        });
+    function updateR(_dataR) {
+        wattR.shift();
+        voltampereR.shift();
+        cosphiR.shift();
+        vrmsR.shift();
+        irmsR.shift();
+
+        nowR += updateIntervalR
+
+        tempR = [nowR, _dataR.wattR];
+        wattR.push(tempR);
+
+        tempR = [nowR, _dataR.voltampereR];
+        voltampereR.push(tempR);
+
+        tempR = [nowR, _dataR.cosphiR];
+        cosphiR.push(tempR);
+
+        tempR = [nowR, _dataR.vrmsR];
+        vrmsR.push(tempR);
+        
+        tempR = [nowR, _dataR.irmsR];
+        irmsR.push(tempR);
+        
+        datasetR = [
+            { label: "Real Power:" + _dataR.wattR + "W", data: wattR, lines: { fill: true, lineWidth: 1.2 }, color: "#00FF00" },
+            { label: "Apparent Power:" + _dataR.voltampereR + "VA", data: voltampereR, color: "#f6a00a", bars: { show: true } },
+            { label: "Power Factor:" + _dataR.cosphiR + "", data: cosphiR, color: "#f60af3", lines: { lineWidth: 1.2}, yaxis: 2 },
+            { label: "Voltage:" + _dataR.vrmsR + "V", data: vrmsR, color: "#0044FF", bars: { show: true } },
+            { label: "Ampere:" + _dataR.irmsR + "A", data: irmsR, lines: { lineWidth: 1.2}, color: "#FF0000", yaxis: 3 }        
+        ];
+
+        $.plot($("#phaseRAll"), datasetR, options);
+        setTimeout(GetDataR, updateIntervalR);
+    }
+
+    var tempRall;
+    
+    function updateRall(_dataRall) {
+        wattR.shift();
+        voltampereR.shift();
+        cosphiR.shift();
+        vrmsR.shift();
+        irmsR.shift();
+
+        nowR += updateIntervalR
+
+        tempR = [nowR, _dataRall.wattR];
+        wattR.push(tempR);
+
+        tempR = [nowR, _dataRall.voltampereR];
+        voltampereR.push(tempR);
+
+        tempR = [nowR, _dataRall.cosphiR];
+        cosphiR.push(tempR);
+
+        tempR = [nowR, _dataRall.vrmsR];
+        vrmsR.push(tempR);
+        
+        tempR = [nowR, _dataRall.irmsR];
+        irmsR.push(tempR);
+
+        dataserWattR = [
+            { label: "Real Power:" + _dataRall.wattR + "W", data: wattR, lines: { fill: true, lineWidth: 1.2 }, color: "#00FF00" }       
+        ];
+        
+        datasetVoltampereR = [
+            { label: "Apparent Power:" + _dataRall.voltampereR + "VA", data: voltampereR, lines: { fill: true, lineWidth: 1.2 }, color: "#f6a00a" }        
+        ];
+        
+        datasetCosphiR = [
+            { label: "Power Factor:" + _dataRall.cosphiR + "", data: cosphiR, lines: { fill: true, lineWidth: 1.2 }, color: "#f60af3" }
+        ];
+        
+        datasetVrmsR = [
+            { label: "Voltage:" + _dataRall.vrmsR + "V", data: vrmsR, lines: { fill: true, lineWidth: 1.2 }, color: "#0044FF" }
+        ];
+        
+        datasetIrmsR = [
+            { label: "Ampere:" + _dataRall.irmsR + "A", data: irmsR, lines: { fill: true, lineWidth: 1.2 }, color: "#FF0000" }    
+        ];
+
+        $.plot($("#phaseRwatt"), dataserWattR, options);
+        $.plot($("#phaseRvoltampere"), datasetVoltampereR, options);
+        $.plot($("#phaseRcosphi"), datasetCosphiR, options);
+        $.plot($("#phaseRvrms"), datasetVrmsR, options);
+        $.plot($("#phaseRirms"), datasetIrmsR, options);
+        setTimeout(GetDataRall, updateIntervalR);
     }
     
-    var temp;
+    var tempS;
 
-    function update(_data) {
-        watt.shift();
-        voltampere.shift();
-        cosphi.shift();
-        vrms.shift();
-        irms.shift();
+    function updateS(_dataS) {
+        wattS.shift();
+        voltampereS.shift();
+        cosphiS.shift();
+        vrmsS.shift();
+        irmsS.shift();
 
-        now += updateInterval
+        nowS += updateIntervalS
 
-        temp = [now, _data.watt];
-        watt.push(temp);
+        tempS = [nowS, _dataS.wattS];
+        wattS.push(tempS);
 
-        temp = [now, _data.voltampere];
-        voltampere.push(temp);
+        tempS = [nowS, _dataS.voltampereS];
+        voltampereS.push(tempS);
 
-        temp = [now, _data.cosphi];
-        cosphi.push(temp);
+        tempS = [nowS, _dataS.cosphiS];
+        cosphiS.push(tempS);
 
-        temp = [now, _data.vrms];
-        vrms.push(temp);
+        tempS = [nowS, _dataS.vrmsS];
+        vrmsS.push(tempS);
         
-        temp = [now, _data.irms];
-        irms.push(temp);
+        tempS = [nowS, _dataS.irmsS];
+        irmsS.push(tempS);
         
-        dataset = [
-            { label: "Real Power:" + _data.watt + "W", data: watt, lines: { fill: true, lineWidth: 1.2 }, color: "#00FF00" },
-            { label: "Apparent Power:" + _data.voltampere + "VA", data: voltampere, color: "#f6a00a", bars: { show: true } },
-            { label: "Power Factor:" + _data.cosphi + "", data: cosphi, color: "#f60af3", lines: { lineWidth: 1.2}, yaxis: 2 },
-            { label: "Voltage:" + _data.vrms + "V", data: vrms, color: "#0044FF", bars: { show: true } },
-            { label: "Ampere:" + _data.irms + "A", data: irms, lines: { lineWidth: 1.2}, color: "#FF0000", yaxis: 3 }        
+        datasetS = [
+            { label: "Real Power:" + _dataS.wattS + "W", data: wattS, lines: { fill: true, lineWidth: 1.2 }, color: "#00FF00" },
+            { label: "Apparent Power:" + _dataS.voltampereS + "VA", data: voltampereS, color: "#f6a00a", bars: { show: true } },
+            { label: "Power Factor:" + _dataS.cosphiS + "", data: cosphiS, color: "#f60af3", lines: { lineWidth: 1.2}, yaxis: 2 },
+            { label: "Voltage:" + _dataS.vrmsS + "V", data: vrmsS, color: "#0044FF", bars: { show: true } },
+            { label: "Ampere:" + _dataS.irmsS + "A", data: irmsS, lines: { lineWidth: 1.2}, color: "#FF0000", yaxis: 3 }        
+        ];
+        
+        $.plot($("#phaseSAll"), datasetS, options);
+        setTimeout(GetDataS, updateIntervalS);
+    }
+
+    var tempSall;
+    
+    function updateSall(_dataSall) {
+        wattS.shift();
+        voltampereS.shift();
+        cosphiS.shift();
+        vrmsS.shift();
+        irmsS.shift();
+
+        nowS += updateIntervalS
+
+        tempS = [nowS, _dataSall.wattS];
+        wattS.push(tempS);
+
+        tempS = [nowS, _dataSall.voltampereS];
+        voltampereS.push(tempS);
+
+        tempS = [nowS, _dataSall.cosphiS];
+        cosphiS.push(tempS);
+
+        tempS = [nowS, _dataSall.vrmsS];
+        vrmsS.push(tempS);
+        
+        tempS = [nowS, _dataSall.irmsS];
+        irmsS.push(tempS);
+
+        dataserWattS = [
+            { label: "Real Power:" + _dataSall.wattS + "W", data: wattS, lines: { fill: true, lineWidth: 1.2 }, color: "#00FF00" }       
+        ];
+        
+        datasetVoltampereS = [
+            { label: "Apparent Power:" + _dataSall.voltampereS + "VA", data: voltampereS, lines: { fill: true, lineWidth: 1.2 }, color: "#f6a00a" }        
+        ];
+        
+        datasetCosphiS = [
+            { label: "Power Factor:" + _dataSall.cosphiS + "", data: cosphiS, lines: { fill: true, lineWidth: 1.2 }, color: "#f60af3" }
+        ];
+        
+        datasetVrmsS = [
+            { label: "Voltage:" + _dataSall.vrmsS + "V", data: vrmsS, lines: { fill: true, lineWidth: 1.2 }, color: "#0044FF" }
+        ];
+        
+        datasetIrmsS = [
+            { label: "Ampere:" + _dataSall.irmsS + "A", data: irmsS, lines: { fill: true, lineWidth: 1.2 }, color: "#FF0000" }    
         ];
 
-        $.plot($("#placeholder"), dataset, options);
-        setTimeout(GetData, updateInterval);
+        $.plot($("#phaseSwatt"), dataserWattS, options);
+        $.plot($("#phaseSvoltampere"), datasetVoltampereS, options);
+        $.plot($("#phaseScosphi"), datasetCosphiS, options);
+        $.plot($("#phaseSvrms"), datasetVrmsS, options);
+        $.plot($("#phaseSirms"), datasetIrmsS, options);
+        setTimeout(GetDataSall, updateIntervalS);
     }
     
-    var temp2;
+    var tempT;
 
-    function update2(_data2) {
-        suhu.shift();
+    function updateT(_dataT) {
+        wattT.shift();
+        voltampereT.shift();
+        cosphiT.shift();
+        vrmsT.shift();
+        irmsT.shift();
 
-        now2 += updateInterval2
+        nowT += updateIntervalT
 
-        temp2 = [now, _data2.suhu];
-        suhu.push(temp2);
+        tempT = [nowT, _dataT.wattT];
+        wattT.push(tempT);
+
+        tempT = [nowT, _dataT.voltampereT];
+        voltampereT.push(tempT);
+
+        tempT = [nowT, _dataT.cosphiT];
+        cosphiT.push(tempT);
+
+        tempT = [nowT, _dataT.vrmsT];
+        vrmsT.push(tempT);
         
-        dataset1 = [
-            { label: "Suhu:" + _data2.suhu + "C", data: suhu, lines:{fill:true, lineWidth:1.2}, color: "#f2e900" }     
+        tempT = [nowT, _dataT.irmsT];
+        irmsT.push(tempT);
+        
+        datasetT = [
+            { label: "Real Power:" + _dataT.wattT + "W", data: wattT, lines: { fill: true, lineWidth: 1.2 }, color: "#00FF00" },
+            { label: "Apparent Power:" + _dataT.voltampereT + "VA", data: voltampereT, color: "#f6a00a", bars: { show: true } },
+            { label: "Power Factor:" + _dataT.cosphiT + "", data: cosphiT, color: "#f60af3", lines: { lineWidth: 1.2}, yaxis: 2 },
+            { label: "Voltage:" + _dataT.vrmsT + "V", data: vrmsT, color: "#0044FF", bars: { show: true } },
+            { label: "Ampere:" + _dataT.irmsT + "A", data: irmsT, lines: { lineWidth: 1.2}, color: "#FF0000", yaxis: 3 }        
         ];
-
-        $.plot($("#placeholder2"), dataset1, options2);
-        setTimeout(GetData2, updateInterval2);
+        
+        $.plot($("#phaseTAll"), datasetT, options);
+        setTimeout(GetDataT, updateIntervalT);
     }
+
+    var tempTall;
     
-    var temp3;
+    function updateTall(_dataTall) {
+        wattT.shift();
+        voltampereT.shift();
+        cosphiT.shift();
+        vrmsT.shift();
+        irmsT.shift();
 
-    function update3(_data3) {
-        watt3.shift();
-        voltampere3.shift();
-        cosphi3.shift();
-        vrms3.shift();
-        irms3.shift();
+        nowT += updateIntervalT
 
-        now3 += updateInterval3
+        tempT = [nowT, _dataTall.wattT];
+        wattT.push(tempT);
 
-        temp3 = [now3, _data3.watt3];
-        watt3.push(temp3);
+        tempT = [nowT, _dataTall.voltampereT];
+        voltampereT.push(tempT);
 
-        temp3 = [now3, _data3.voltampere3];
-        voltampere3.push(temp3);
+        tempT = [nowT, _dataTall.cosphiT];
+        cosphiT.push(tempT);
 
-        temp3 = [now3, _data3.cosphi3];
-        cosphi3.push(temp3);
-
-        temp3 = [now3, _data3.vrms3];
-        vrms3.push(temp3);
+        tempT = [nowT, _dataTall.vrmsT];
+        vrmsT.push(tempT);
         
-        temp3 = [now3, _data3.irms3];
-        irms3.push(temp3);
+        tempT = [nowT, _dataTall.irmsT];
+        irmsT.push(tempT);
         
-        dataset2 = [
-            { label: "Real Power:" + _data3.watt3 + "W", data: watt3, lines: { fill: true, lineWidth: 1.2 }, color: "#00FF00" },
-            { label: "Apparent Power:" + _data3.voltampere3 + "VA", data: voltampere3, color: "#f6a00a", bars: { show: true } },
-            { label: "Power Factor:" + _data3.cosphi3 + "", data: cosphi3, color: "#f60af3", lines: { lineWidth: 1.2}, yaxis: 2 },
-            { label: "Voltage:" + _data3.vrms3 + "V", data: vrms3, color: "#0044FF", bars: { show: true } },
-            { label: "Ampere:" + _data3.irms3 + "A", data: irms3, lines: { lineWidth: 1.2}, color: "#FF0000", yaxis: 3 }        
+        dataserWattT = [
+            { label: "Real Power:" + _dataTall.wattT + "W", data: wattT, lines: { fill: true, lineWidth: 1.2 }, color: "#00FF00" }       
         ];
         
-        $.plot($("#placeholder3"), dataset2, options);
-        setTimeout(GetData3, updateInterval3);
+        datasetVoltampereT = [
+            { label: "Apparent Power:" + _dataTall.voltampereT + "VA", data: voltampereT, lines: { fill: true, lineWidth: 1.2 }, color: "#f6a00a" }        
+        ];
+        
+        datasetCosphiT = [
+            { label: "Power Factor:" + _dataTall.cosphiT + "", data: cosphiT, lines: { fill: true, lineWidth: 1.2 }, color: "#f60af3" }
+        ];
+        
+        datasetVrmsT = [
+            { label: "Voltage:" + _dataTall.vrmsT + "V", data: vrmsT, lines: { fill: true, lineWidth: 1.2 }, color: "#0044FF" }
+        ];
+        
+        datasetIrmsT = [
+            { label: "Ampere:" + _dataTall.irmsT + "A", data: irmsT, lines: { fill: true, lineWidth: 1.2 }, color: "#FF0000" }    
+        ];
+
+        $.plot($("#phaseTwatt"), dataserWattT, options);
+        $.plot($("#phaseTvoltampere"), datasetVoltampereT, options);
+        $.plot($("#phaseTcosphi"), datasetCosphiT, options);
+        $.plot($("#phaseTvrms"), datasetVrmsT, options);
+        $.plot($("#phaseTirms"), datasetIrmsT, options);
+        setTimeout(GetDataTall, updateIntervalT);
     }
+
+    var tempTemp;
     
-    var temp4;
+    function updateTemp(_dataTemp) {
+        temperature.shift();
 
-    function update4(_data4) {
-        watt4.shift();
-        voltampere4.shift();
-        cosphi4.shift();
-        vrms4.shift();
-        irms4.shift();
+        nowTemp += updateIntervalTemp
 
-        now4 += updateInterval4
-
-        temp4 = [now4, _data4.watt4];
-        watt4.push(temp3);
-
-        temp4 = [now4, _data4.voltampere4];
-        voltampere4.push(temp4);
-
-        temp4 = [now4, _data4.cosphi4];
-        cosphi4.push(temp4);
-
-        temp4 = [now4, _data4.vrms4];
-        vrms4.push(temp4);
+        tempTemp = [nowTemp, _dataTemp.temperature];
+        temperature.push(tempTemp);
         
-        temp4 = [now4, _data4.irms4];
-        irms4.push(temp4);
-        
-        dataset3 = [
-            { label: "Real Power:" + _data4.watt4 + "W", data: watt4, lines: { fill: true, lineWidth: 1.2 }, color: "#00FF00" },
-            { label: "Apparent Power:" + _data4.voltampere3 + "VA", data: voltampere4, color: "#f6a00a", bars: { show: true } },
-            { label: "Power Factor:" + _data4.cosphi4 + "", data: cosphi4, color: "#f60af3", lines: { lineWidth: 1.2}, yaxis: 2 },
-            { label: "Voltage:" + _data4.vrms4 + "V", data: vrms4, color: "#0044FF", bars: { show: true } },
-            { label: "Ampere:" + _data4.irms4 + "A", data: irms4, lines: { lineWidth: 1.2}, color: "#FF0000", yaxis: 3 }        
+        datasetTemp = [
+            { label: "Temperature:" + _dataTemp.temperature + "C", data: temperature, lines:{fill:true, lineWidth:1.2}, color: "#f2e900" }     
         ];
-        
-        $.plot($("#placeholder4"), dataset3, options);
-        setTimeout(GetData4, updateInterval4);
+
+        $.plot($("#temperatureData"), datasetTemp, optionsTemp);
+        setTimeout(GetDataTemp, updateIntervalTemp);
     }
-    
-    $(document).ready(function () {
-        initData();
-        initData2();
-        initData3();
-        initData4();
-        
-        dataset = [        
-            { label: "Real Power:", data: watt, lines:{fill:true, lineWidth:1.2}, color: "#00FF00" },
-            { label: "Apparent Power:", data: voltampere, color: "#f6a00a", bars: { show: true } },
-            { label: "Power Factor:", data: cosphi, color: "#f60af3", bars: { show: true }, yaxis: 2 },
-            { label: "Voltage:", data: vrms, color: "#0044FF", bars: { show: true } },
-            { label: "Ampere:", data: irms, lines: { lineWidth: 1.2}, color: "#FF0000", yaxis: 3 }
-        ];
-        
-        dataset1 = [
-            { label: "Suhu:", data: suhu, lines:{fill:true, lineWidth:1.2}, color: "#f2e900" }     
-        ];
-        
-        dataset2 = [        
-            { label: "Real Power:", data: watt3, lines:{fill:true, lineWidth:1.2}, color: "#00FF00" },
-            { label: "Apparent Power:", data: voltampere3, color: "#f6a00a", bars: { show: true } },
-            { label: "Power Factor:", data: cosphi3, color: "#f60af3", bars: { show: true }, yaxis: 2 },
-            { label: "Voltage:", data: vrms3, color: "#0044FF", bars: { show: true } },
-            { label: "Ampere:", data: irms3, lines: { lineWidth: 1.2}, color: "#FF0000", yaxis: 3 }
-        ];
-        
-        dataset3 = [        
-            { label: "Real Power:", data: watt4, lines:{fill:true, lineWidth:1.2}, color: "#00FF00" },
-            { label: "Apparent Power:", data: voltampere4, color: "#f6a00a", bars: { show: true } },
-            { label: "Power Factor:", data: cosphi4, color: "#f60af3", bars: { show: true }, yaxis: 2 },
-            { label: "Voltage:", data: vrms4, color: "#0044FF", bars: { show: true } },
-            { label: "Ampere:", data: irms4, lines: { lineWidth: 1.2}, color: "#FF0000", yaxis: 3 }
-        ];
-
-        $.plot($("#placeholder"), dataset, options);
-        $.plot($("#placeholder2"), dataset1, options2);
-        $.plot($("#placeholder3"), dataset2, options);
-        $.plot($("#placeholder4"), dataset3, options);
-        setTimeout(GetData, updateInterval);
-        setTimeout(GetData2, updateInterval2);
-        setTimeout(GetData3, updateInterval3);
-        setTimeout(GetData4, updateInterval4);
-    });
-});

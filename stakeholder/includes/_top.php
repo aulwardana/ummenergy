@@ -1,3 +1,14 @@
+<?php 
+include_once('../includes/_connect-db.php');
+
+//securing include file from direct access
+if (strstr($_SERVER["PHP_SELF"], "/includes/")) {
+    die ("Istighfar, jangan di hack. Makasih :)");
+}
+
+$core = Core::getInstance();
+
+?>
     <body class="fixed-top">    
         <div id="header" class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
@@ -33,14 +44,13 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="../assets/img/avatar1_small.jpg" alt="">
-                                    <span class="username">aul</span>
+                                <span class="username">More Menu</span>
                                 <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="about.php"><i class="icon-user"></i> About Us</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="includes/logout.php"><i class="icon-key"></i> Log Out</a></li>
+                                    <li><a href="/"><i class="icon-home"></i> Home</a></li>
                                 </ul>
                             </li>
                         </ul>
