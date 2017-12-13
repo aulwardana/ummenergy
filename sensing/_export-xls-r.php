@@ -10,15 +10,20 @@ $stmt_xls->execute();
 $header = '';
 $data ='';
 
-$fields = $stmt_xls->fetchColumn();
+//$fields = $stmt_xls->fetchColumn();
 
-for ( $i = 0; $i < $fields; $i++ ){
-    $header .= $stmt_xls->getColumnMeta($i) . "\t";
+foreach ( range(0, $stmt_xls->columnCount() - 1) as $column_index ){
+    $all_column_header[] = $stmt_xls->getColumnMeta($column_index);
+    $column_header[] = implode(',', $all_column_header[$column_index]);
 }
 
-while($row = $stmt_xls->FETCH(PDO::FETCH_ASSOC)){
+foreach ($column_header as $aa) {
+    $header .= $aa . "\t";
+}
+
+while($row = $stmt_xls->fetch(PDO::FETCH_NUM)){
     $line = '';
-    foreach( $row as $value ){                                            
+    foreach( $row as $column_index => $value ){                                            
         if ( ( !isset( $value ) ) || ( $value == "" ) ){
             $value = "\t";
         } else {
