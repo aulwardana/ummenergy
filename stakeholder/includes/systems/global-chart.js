@@ -214,7 +214,7 @@
         $.ajaxSetup({ cache: false });
 
         $.ajax({
-            url: "http://localhost/ummenergy/sensing/_sensing-pltmh-data-r.php",
+            url: "./sensing/_sensing-pltmh-data-r.php",
             dataType: 'json',
             success: updateR,
             error: function () {
@@ -227,7 +227,7 @@
         $.ajaxSetup({ cache: false });
 
         $.ajax({
-            url: "http://localhost/ummenergy/sensing/_sensing-pltmh-data-r.php",
+            url: "./sensing/_sensing-pltmh-data-r.php",
             dataType: 'json',
             success: updateRall,
             error: function () {
@@ -240,7 +240,7 @@
         $.ajaxSetup({ cache: false });
 
         $.ajax({
-            url: "http://localhost/ummenergy/sensing/_sensing-pltmh-data-s.php",
+            url: "./sensing/_sensing-pltmh-data-s.php",
             dataType: 'json',
             success: updateS,
             error: function () {
@@ -253,7 +253,7 @@
         $.ajaxSetup({ cache: false });
 
         $.ajax({
-            url: "http://localhost/ummenergy/sensing/_sensing-pltmh-data-s.php",
+            url: "./sensing/_sensing-pltmh-data-s.php",
             dataType: 'json',
             success: updateSall,
             error: function () {
@@ -266,7 +266,7 @@
         $.ajaxSetup({ cache: false });
 
         $.ajax({
-            url: "http://localhost/ummenergy/sensing/_sensing-pltmh-data-t.php",
+            url: "./sensing/_sensing-pltmh-data-t.php",
             dataType: 'json',
             success: updateT,
             error: function () {
@@ -279,7 +279,7 @@
         $.ajaxSetup({ cache: false });
 
         $.ajax({
-            url: "http://localhost/ummenergy/sensing/_sensing-pltmh-data-t.php",
+            url: "./sensing/_sensing-pltmh-data-t.php",
             dataType: 'json',
             success: updateTall,
             error: function () {
@@ -292,7 +292,7 @@
         $.ajaxSetup({ cache: false });
 
         $.ajax({
-            url: "http://localhost/ummenergy/sensing/_sensing-temp-data.php",
+            url: "./sensing/_sensing-temp-data.php",
             dataType: 'json',
             success: updateTemp,
             error: function () {
