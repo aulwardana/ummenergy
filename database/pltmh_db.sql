@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 08 Des 2017 pada 08.16
+-- Generation Time: 13 Des 2017 pada 09.56
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 5.5.37
 
@@ -43,8 +43,20 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id_account`, `username`, `email`, `role`, `first_name`, `last_name`, `password`, `salt`, `date_joined`) VALUES
-(1, 'aulwardana', 'auldesain@gmail.com', 'Administrator', 'Aulia Arif', 'Wardana', '456a31f98f8e827b41775849d963878a651311e6179542a5b9d21a24517906d4', 'ed52a4c2a5dce39e09ecb09c0c55f2d0016ec88ae3ab435daebba1d170e02e3f', '2017-12-05 09:29:12'),
-(2, 'aulworker', 'auliawardan@gmail.com', 'Worker', 'Aulia Arif', 'Wardana', 'a2a323356de7f4caf2318eb9816df9105aadaa2b0b1af50a1f8ad4115ea2391d', 'ecad56ab9e909b0c011122f6287a42349f6d83ea3e362dd1f29f18b73c5e53c6', '2017-12-05 09:32:57');
+(1, 'aulwardana', 'auliawardan@gmail.com', 'Administrator', 'Aulia Arif', 'Wardana', '108c7fa2683212337052202d2eb60f0e563b454e4015eacf2c5300b1f7e2094e', '622d883eea41a8151ee606aa725afb711259e8b11436d7afd0003de0cebdf573', '2017-12-13 01:45:00'),
+(2, 'aulworker', 'auldesain@gmail.com', 'Worker', 'Aulia Arif', 'Wardana', '6c92430edda41683386567ad973d6f7080e1cc4d2361c1d7dff5c522e8dfead0', 'b48d2153064a7cd46d6ec5da353898c46c643ecd31109d7e7ad6ad67f345c9a8', '2017-12-13 01:45:46');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `hits`
+--
+
+CREATE TABLE `hits` (
+  `pageid` varchar(100) NOT NULL,
+  `isunique` tinyint(1) NOT NULL,
+  `hitcount` int(10) UNSIGNED NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -56,13 +68,6 @@ CREATE TABLE `login_attempts` (
   `user_id` int(11) NOT NULL,
   `time` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `login_attempts`
---
-
-INSERT INTO `login_attempts` (`user_id`, `time`) VALUES
-(1, '1512599874');
 
 -- --------------------------------------------------------
 
@@ -80,17 +85,6 @@ CREATE TABLE `pltmh_data_r` (
   `ampere` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `pltmh_data_r`
---
-
-INSERT INTO `pltmh_data_r` (`id`, `time`, `watt`, `voltampere`, `cosphi`, `volt`, `ampere`) VALUES
-(1, '2017-12-07 12:22:00', '2', '2', '2', '2', '2'),
-(2, '2017-12-07 12:24:34', '4', '4', '4', '4', '4'),
-(3, '2017-12-07 12:25:01', '6', '6', '6', '6', '6'),
-(4, '2017-12-07 12:31:42', '7', '7', '7', '7', '8.9'),
-(5, '2017-12-08 03:16:52', '7', '7', '7', '7', '7');
-
 -- --------------------------------------------------------
 
 --
@@ -107,16 +101,6 @@ CREATE TABLE `pltmh_data_s` (
   `ampere` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `pltmh_data_s`
---
-
-INSERT INTO `pltmh_data_s` (`id`, `time`, `watt`, `voltampere`, `cosphi`, `volt`, `ampere`) VALUES
-(1, '2017-12-07 12:22:00', '2', '2', '2', '2', '2'),
-(2, '2017-12-07 12:24:34', '4', '4', '4', '4', '4'),
-(3, '2017-12-07 12:25:01', '6', '6', '6', '6', '6'),
-(4, '2017-12-07 12:31:42', '7', '7', '7', '7', '8.9');
-
 -- --------------------------------------------------------
 
 --
@@ -132,16 +116,6 @@ CREATE TABLE `pltmh_data_t` (
   `volt` varchar(255) NOT NULL,
   `ampere` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `pltmh_data_t`
---
-
-INSERT INTO `pltmh_data_t` (`id`, `time`, `watt`, `voltampere`, `cosphi`, `volt`, `ampere`) VALUES
-(1, '2017-12-07 12:22:00', '2', '2', '2', '2', '2'),
-(2, '2017-12-07 12:24:34', '4', '4', '4', '4', '4'),
-(3, '2017-12-07 12:25:01', '6', '6', '6', '6', '6'),
-(4, '2017-12-07 12:31:42', '7', '7', '7', '7', '8.9');
 
 -- --------------------------------------------------------
 
@@ -164,6 +138,12 @@ CREATE TABLE `temperature` (
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`id_account`);
+
+--
+-- Indexes for table `hits`
+--
+ALTER TABLE `hits`
+  ADD KEY `pageid` (`pageid`);
 
 --
 -- Indexes for table `pltmh_data_r`
@@ -202,17 +182,17 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `pltmh_data_r`
 --
 ALTER TABLE `pltmh_data_r`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pltmh_data_s`
 --
 ALTER TABLE `pltmh_data_s`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pltmh_data_t`
 --
 ALTER TABLE `pltmh_data_t`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `temperature`
 --

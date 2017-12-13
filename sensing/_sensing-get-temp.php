@@ -8,7 +8,7 @@
 
         if (empty($msg)) {
   
-            if ($insert_stmt = $core->dbh->prepare("INSERT INTO temperature (temp) VALUES (?)")) {
+            if ($insert_stmt = $core->dbh->prepare("INSERT INTO temperature (celcius) VALUES (?)")) {
                 $insert_stmt->bindParam('1', $temp);
                 if (! $insert_stmt->execute()) {
                     exit();

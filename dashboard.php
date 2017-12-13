@@ -21,8 +21,14 @@ include_once('includes/_top.php');
 	$number_of_CountPhaseR = $resultCountPhaseR->fetchColumn(); 
 	$number_of_CountPhaseS = $resultCountPhaseS->fetchColumn();
 	$number_of_CountPhaseT = $resultCountPhaseT->fetchColumn();
-	$total_sensing_data = $number_of_CountPhaseR + $number_of_CountPhaseS + $number_of_CountPhaseT
+	$total_sensing_data = $number_of_CountPhaseR + $number_of_CountPhaseS + $number_of_CountPhaseT;
 
+	//Count Visitor
+	$visit = "SELECT hitcount FROM hits WHERE isunique = 1";
+	$resultvisit = $core->dbh->prepare($visit); 
+	$resultvisit->execute(); 
+	$row = $resultvisit->fetch(PDO::FETCH_NUM);
+	$visitor = $row[0];
 ?>
 
 <script>
@@ -121,7 +127,7 @@ include_once('includes/_top.php');
 											<i class="icon-eye-open"></i>
 										</div>
 										<div class="details">
-											<div class="number">1</div>
+											<div class="number"><?php echo $visitor; ?></div>
 											<div class="title">Visitor</div>
 										</div>
 									</div>

@@ -27,3 +27,8 @@ For hardware program and schematic source you can go to [this link](http://www.u
 8. Database Backup. (Admin)
 9. User Management. (Admin)
 10. Using Opensource Hardware from [Open Energy Monitor](https://openenergymonitor.org/ "Open Energy Monitor").
+
+
+## Testing Account
+1. Email : auliawardan@gmail.com, Pass : rahasia, Role : Administrator
+1. Email : auldesain@gmail.com, Pass : rahasia, Role : Worker

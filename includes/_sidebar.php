@@ -24,6 +24,7 @@ if (strstr($_SERVER["PHP_SELF"], "/includes/")) {
                                 <li><a class="" href="drp-t.php">Data Report Phase T</a></li>
                             </ul>
                         </li>
+                        <? if ($role == "Administrator"): ?>
                         <li class="has-sub">
                             <a href="javascript:;" class="">
                             <span class="icon-box"><i class="icon-cogs"></i></span> Settings
@@ -35,6 +36,7 @@ if (strstr($_SERVER["PHP_SELF"], "/includes/")) {
                                 <li><a class="" href="users.php">Manage Account</a></li>
                             </ul>
                         </li>
+                        <? endif; ?>
                     </ul>
                 </div>
             </div>

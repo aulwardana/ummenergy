@@ -1,3 +1,10 @@
+<?php 
+include_once('includes/_php-count-page.php');
+
+//count visitor
+PHPCount::AddHit("page1", "127.0.0.1");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
