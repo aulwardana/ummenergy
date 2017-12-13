@@ -1,4 +1,4 @@
-#Power Meter Monitoring System from Micro Hydro Power Plant using Internet of Things Technology and Open Source Hardware
+# Power Meter Monitoring System from Micro Hydro Power Plant using Internet of Things Technology and Open Source Hardware
 
 
 This is my final project from bachelor degree program at University of Muhammadiyah Malang. This research started in 2013 and finished in 2014. This research purpose is to implement opensource hardware and Internet of Things (IoT) technology for energy monitoring. This monitoring system have two main technology, first is monitoring hardware and second is web application as monitoring platform. This technology hopefully can help power plant technician to monitor the power meter from micro hydro power plant, so the technician more easy to maintenance the power plant.
