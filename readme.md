@@ -31,4 +31,8 @@ For hardware program and schematic source you can go to [this link](http://www.u
 
 ## Testing Account
 1. Email : auliawardan@gmail.com, Pass : rahasia, Role : Administrator
-1. Email : auldesain@gmail.com, Pass : rahasia, Role : Worker
+2. Email : auldesain@gmail.com, Pass : rahasia, Role : Worker
+
+
+## License
+You can use or edit this platfrom for free, but please support us with attibution like this "Inspired by aulwardana | www.ummenergy.com" when you use this platfrom. Thanks !
