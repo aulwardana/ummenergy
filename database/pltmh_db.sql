@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 13 Des 2017 pada 09.56
+-- Generation Time: 14 Des 2017 pada 09.56
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 5.5.37
 
@@ -35,16 +35,18 @@ CREATE TABLE `account` (
   `last_name` varchar(65) NOT NULL,
   `password` char(128) NOT NULL,
   `salt` char(128) NOT NULL,
-  `date_joined` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_joined` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_backup_db` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `notification` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `account`
 --
 
-INSERT INTO `account` (`id_account`, `username`, `email`, `role`, `first_name`, `last_name`, `password`, `salt`, `date_joined`) VALUES
-(1, 'aulwardana', 'auliawardan@gmail.com', 'Administrator', 'Aulia Arif', 'Wardana', '108c7fa2683212337052202d2eb60f0e563b454e4015eacf2c5300b1f7e2094e', '622d883eea41a8151ee606aa725afb711259e8b11436d7afd0003de0cebdf573', '2017-12-13 01:45:00'),
-(2, 'aulworker', 'auldesain@gmail.com', 'Worker', 'Aulia Arif', 'Wardana', '6c92430edda41683386567ad973d6f7080e1cc4d2361c1d7dff5c522e8dfead0', 'b48d2153064a7cd46d6ec5da353898c46c643ecd31109d7e7ad6ad67f345c9a8', '2017-12-13 01:45:46');
+INSERT INTO `account` (`id_account`, `username`, `email`, `role`, `first_name`, `last_name`, `password`, `salt`, `date_joined`, `date_backup_db`, `notification`) VALUES
+(1, 'aulwardana', 'auliawardan@gmail.com', 'Administrator', 'Aulia Arif', 'Wardana', '108c7fa2683212337052202d2eb60f0e563b454e4015eacf2c5300b1f7e2094e', '622d883eea41a8151ee606aa725afb711259e8b11436d7afd0003de0cebdf573', '2017-12-13 01:45:00', '0000-00-00 00:00:00', ''),
+(2, 'aulworker', 'auldesain@gmail.com', 'Worker', 'Aulia Arif', 'Wardana', '6c92430edda41683386567ad973d6f7080e1cc4d2361c1d7dff5c522e8dfead0', 'b48d2153064a7cd46d6ec5da353898c46c643ecd31109d7e7ad6ad67f345c9a8', '2017-12-13 01:45:46', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -177,7 +179,7 @@ ALTER TABLE `temperature`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id_account` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_account` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `pltmh_data_r`
 --
