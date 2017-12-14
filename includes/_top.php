@@ -16,7 +16,7 @@ if (login_check() == true) {
         $login_string = $_SESSION['login_string'];
         $username = $_SESSION['username'];
 
-        if ($stmt = $core->dbh->prepare("SELECT role FROM account WHERE id_account = :id LIMIT 1")) {
+        if ($stmt = $core->dbh->prepare("SELECT role, email, date_backup_db FROM account WHERE id_account = :id LIMIT 1")) {
             $stmt->bindParam(':id', $user_id);
             $stmt->execute();
 
@@ -25,6 +25,8 @@ if (login_check() == true) {
  
               foreach($row as $row){
                   $role=$row[0];
+                  $email=$row[1];
+                  $dbbackup=$row[2];
               }
             }
         }

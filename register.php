@@ -5,6 +5,8 @@ include_once('includes/_top.php');
 if ($role == "Administrator") {
   $msg = "";
   $time = gmdate("Y-m-d\TH:i:s\Z");
+  $notification = "0";
+  $backupdb = "0";
 
   if (isset($_POST['username'], $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password'], $_POST['role'])) {
       $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
@@ -39,7 +41,7 @@ if ($role == "Administrator") {
 
           $password = hash('sha256', $password . $random_salt);
 
-          if ($insert_stmt = $core->dbh->prepare("INSERT INTO account (username, email, role, first_name, last_name, password, salt, date_joined) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
+          if ($insert_stmt = $core->dbh->prepare("INSERT INTO account (username, email, role, first_name, last_name, password, salt, date_joined, date_backup_db, notification) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
               $insert_stmt->bindParam('1', $username);
               $insert_stmt->bindParam('2', $email);
               $insert_stmt->bindParam('3', $role);
@@ -48,6 +50,8 @@ if ($role == "Administrator") {
               $insert_stmt->bindParam('6', $password);
               $insert_stmt->bindParam('7', $random_salt);
               $insert_stmt->bindParam('8', $time);
+              $insert_stmt->bindParam('9', $backupdb);
+              $insert_stmt->bindParam('10', $notification);
               if (! $insert_stmt->execute()) {
                   header ("location:users.php");
                   exit();
@@ -102,6 +106,7 @@ if ($role == "Administrator") {
                                     </span>
                                 </div>
                                 <div class="widget-body form">
+                                    <p><?php echo $msg;?></p>
                                     <ul>
                                         <li>Emails must have a valid email format</li>
                                         <li>Passwords must contain :

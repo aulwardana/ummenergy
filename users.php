@@ -98,7 +98,7 @@ if (isset($_POST['role'], $_POST['idUser'])) {
                                                                     Apakah Anda yakin menghapus user ini?
                                                                     </div>
                                                                     <div class='modal-footer'>
-                                                                    <form action='user.php' method='post'>
+                                                                    <form action='users.php' method='post'>
                                                                         <input type='hidden' name ='del' value='$row[0]'>
                                                                         <button type='submit' class='btn btn-danger'>Yes</button>
                                                                         <button type='button' class='btn btn-primary' data-dismiss='modal'>No</button>
