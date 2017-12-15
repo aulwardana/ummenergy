@@ -7,6 +7,19 @@ include_once('includes/Mail/mime.php');
 if ($role == "Administrator") {
     $user_id = $_SESSION['user_id'];
     $time = gmdate("Y-m-d\TH:i:s\Z");
+
+    if ($stmt = $core->dbh->prepare("SELECT notification FROM account WHERE id_account = :id LIMIT 1")) {
+        $stmt->bindParam(':id', $user_id);
+        $stmt->execute();
+
+        if ($stmt->rowCount() == 1) {
+          $row = $stmt->fetchAll(PDO::FETCH_NUM);
+
+          foreach($row as $row){
+              $status_notif=$row[0];
+          }
+        }
+    }
 } else {
     header ("location:index.php");
 }
@@ -93,6 +106,31 @@ if (isset($_POST['backup'])) {
         exit();
     }
 } 
+
+if (isset($_POST['notif_deactive'])) {
+    $status_deactive = "0";
+    $prep_stmt_ntf_0 = "UPDATE account SET notification = :status_deactive WHERE id_account = :id";
+    $ntf_0_stmt = $core->dbh->prepare($prep_stmt_ntf_0);
+    $ntf_0_stmt->bindParam(':status_deactive', $status_deactive);
+    $ntf_0_stmt->bindParam(':id', $user_id);
+    if ($ntf_0_stmt->execute()) {
+        header('Location: ./settings.php');
+        exit();
+    }
+} 
+
+if (isset($_POST['notif_active'])) {
+    $status_active = "1";
+    $prep_stmt_ntf_1 = "UPDATE account SET notification = :status_active WHERE id_account = :id";
+    $ntf_1_stmt = $core->dbh->prepare($prep_stmt_ntf_1);
+    $ntf_1_stmt->bindParam(':status_active', $status_active);
+    $ntf_1_stmt->bindParam(':id', $user_id);
+    if ($ntf_1_stmt->execute()) {
+        header('Location: ./settings.php');
+        exit();
+    }
+} 
+
 ?>
 
         <div id="container" class="row-fluid">
@@ -135,11 +173,23 @@ if (isset($_POST['backup'])) {
                                     </div>
                                     <div class="widget-body form">
                                         <div class="control-group">
-                                            <label class="control-label">Status : Deactive</label>
+                                            <?php if ($status_notif == '1') { 
+                                                    echo "<label class=\"control-label\">Status : Active</label>";
+                                                    echo "<input type='hidden' name ='notif_deactive'>";
+                                                }else {
+                                                    echo "<label class=\"control-label\">Status : Deactive</label>";
+                                                    echo "<input type='hidden' name ='notif_active'>";
+                                                } 
+                                            ?>
                                             <label class="control-label">Send To : <?php echo $email ?></label>
                                         </div>
                                         <div class="form-actions">
-                                            <input type="submit" value="Active" name="submit" />
+                                            <?php if ($status_notif == '1') { 
+                                                    echo "<input type=\"submit\" value=\"Deactive\" name=\"submit\" />";
+                                                }else {
+                                                    echo "<input type=\"submit\" value=\"Active\" name=\"submit\" />";
+                                                } 
+                                            ?>
                                         </div>
                                     </div>
                                 </form>
