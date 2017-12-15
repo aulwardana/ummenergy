@@ -1,30 +1,32 @@
 <?php
 include_once('../includes/_connect-db.php');
 
-$core = Core::getInstance();
+$con = mysql_connect(Config::read('db.host'),Config::read('db.user'),Config::read('db.password'));
+mysql_select_db(Config::read('db.basename'),$con);
 
-$prep_stmt_xls = "SELECT * FROM pltmh_data_r WHERE time >= DATE_FORMAT('" .$_POST["from"]. "', '%Y/%m/%d') AND time <=  DATE_FORMAT('" .$_POST["to"]. "', '%Y/%m/%d')";
-$stmt_xls = $core->dbh->prepare($prep_stmt_xls);
-$stmt_xls->execute();
-
+$query = "SELECT * FROM pltmh_data_r WHERE time >= DATE_FORMAT('" .$_POST["from"]. "', '%Y/%m/%d') AND time <=  DATE_FORMAT('" .$_POST["to"]. "', '%Y/%m/%d')";
 $header = '';
 $data ='';
+$export = mysql_query ($query ) or die ( "Sql error : " . mysql_error( ) );
 
-foreach ( range(0, $stmt_xls->columnCount() - 1) as $column_index ){
-    $all_column_header[] = $stmt_xls->getColumnMeta($column_index);
-    $column_header[] = implode(',', $all_column_header[$column_index]);
+$fields = mysql_num_fields ( $export );
+
+for ( $i = 0; $i < $fields; $i++ )
+{
+    $header .= mysql_field_name( $export , $i ) . "\t";
 }
 
-foreach ($column_header as $aa) {
-    $header .= $aa . "\t";
-}
-
-while($row = $stmt_xls->fetch(PDO::FETCH_NUM)){
+while( $row = mysql_fetch_row( $export ) )
+{
     $line = '';
-    foreach( $row as $column_index => $value ){                                            
-        if ( ( !isset( $value ) ) || ( $value == "" ) ){
+    foreach( $row as $value )
+    {                                            
+        if ( ( !isset( $value ) ) || ( $value == "" ) )
+        {
             $value = "\t";
-        } else {
+        }
+        else
+        {
             $value = str_replace( '"' , '""' , $value );
             $value = '"' . $value . '"' . "\t";
         }
@@ -34,7 +36,8 @@ while($row = $stmt_xls->fetch(PDO::FETCH_NUM)){
 }
 $data = str_replace( "\r" , "" , $data );
 
-if ( $data == "" ){
+if ( $data == "" )
+{
     $data = "\nNo Record(s) Found!\n";                        
 }
 
