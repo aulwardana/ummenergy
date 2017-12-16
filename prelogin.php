@@ -48,7 +48,7 @@ PHPCount::AddHit("page1", "127.0.0.1");
 
 		   <section class="about">
 			 <p class="about-links">
-			   <a href="http://ft.umm.ac.id" target="_blank">Fakultas of Engineering, UMM</a>
+			   <a href="http://ft.umm.ac.id" target="_blank">Faculty of Engineering, UMM</a>
 			 </p>
 			  <p class="about-author">
 			   &copy; 2014  -  <?php echo date('Y',time()); ?>

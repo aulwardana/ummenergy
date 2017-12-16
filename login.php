@@ -83,13 +83,13 @@ if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'
 
 						<section class="about">
 								<p class="about-links">
-									<a href="http://ft.umm.ac.id" target="_blank">Fakultas Teknik UMM</a>
+									<a href="http://ft.umm.ac.id" target="_blank">Faculty of Engineering, UMM</a>
 								</p>
 									<p class="about-author">
 									&copy; 2014  -  <?php echo date('Y',time()); ?>
 									<a href="http://www.ummenergy.com" target="_blank">UMM Energy</a><br>
 									<a href="http://www.facebook.com/indoraya" target="_blank">Agus Eko Minarno, M. Kom.</a>
-									<a href="http://twitter.com/aulwardana" target="_blank">Aulia Arif Wardana</a><br/>
+									<a href="https://id.linkedin.com/in/aulwardana" target="_blank">Aulia Arif Wardana</a><br/>
 									<a href="http://www.umm.ac.id" target="_blank">University of Muhammadiyah Malang</a>
 								</p>
 						</section>
