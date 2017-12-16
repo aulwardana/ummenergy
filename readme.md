@@ -29,6 +29,10 @@ For hardware program and schematic source you can go to [this link](http://www.u
 10. Using Opensource Hardware from [Open Energy Monitor](https://openenergymonitor.org/ "Open Energy Monitor").
 
 
+## Application Setup
+You can setup this web app by using [this link](https://gitlab.com/aulwardana/ummenergy/wikis/Setup-UMM-Energy-Platform-Web-App "UMM Energy Setup")
+
+
 ## Testing Account
 1. Email : auliawardan@gmail.com, Pass : rahasia, Role : Administrator
 2. Email : auldesain@gmail.com, Pass : rahasia, Role : Worker
