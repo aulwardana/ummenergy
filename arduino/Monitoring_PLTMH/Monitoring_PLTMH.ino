@@ -18,7 +18,7 @@ int WattPLTS=6, VoltagePLTS=5, AmperePLTS=5, PowerFactorPLTS=5, FrekuensiPLTS=5;
 
 //deklarasi variabel Ethernet Shield 
 byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};
-char server[] = "192.168.1.1"; //Domain Website
+char server[] = "www.ummenergy.com"; //Domain Website
 char buffer[256];
 IPAddress ip(192, 168, 1, 7);
 EthernetClient client;
@@ -88,7 +88,7 @@ void BacaDataPM(){
 void SendDataWebPLTMHPhaseR(){
   if (client.connect(server, 80)) {
      Serial.println("connected");
-     client.print("POST /add/_sensing-data.php?");
+     client.print("GET /add/_sensing-get-pltmh-r.php?");
      client.print("watt=");
      client.print(WattPhaseRPLTMH);
      client.print("&&");
@@ -104,7 +104,7 @@ void SendDataWebPLTMHPhaseR(){
      client.print("ampere=");
      client.print(AmperePhaseRPLTMH);
      client.println(" HTTP/1.1");
-     client.println("Host: 192.168.1.1");
+     client.println("Host: www.ummenergy.com");
      client.println( "Content-Type: application/x-www-form-urlencoded" );
      client.println("Connection: close");
      client.println();
@@ -135,11 +135,11 @@ void suhu(){
  void SendSuhu(){
   if (client.connect(server, 80)) {
      Serial.println("connected");
-     client.print("POST /sensing/_sensing-data.php?");
+     client.print("GET /sensing/_sensing-get-temp.php?");
      client.print("temp=");
      client.print(tempsuhu);
      client.println(" HTTP/1.1");
-     client.println("Host: 192.168.1.1");
+     client.println("Host: www.ummenergy.com");
      client.println( "Content-Type: application/x-www-form-urlencoded" );
      client.println("Connection: close");
      client.println();

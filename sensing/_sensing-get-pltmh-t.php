@@ -3,12 +3,12 @@
 
    $core = Core::getInstance();
 
-   if (isset($_POST['watt'], $_POST['voltampere'], $_POST['cosphi'], $_POST['volt'], $_POST['ampere'])) {
-        $watt = filter_input(INPUT_POST, 'watt', FILTER_SANITIZE_STRING);
-        $voltampere= filter_input(INPUT_POST, 'voltampere', FILTER_SANITIZE_STRING);
-        $cosphi= filter_input(INPUT_POST, 'cosphi', FILTER_SANITIZE_STRING);
-        $volt = filter_input(INPUT_POST, 'volt', FILTER_SANITIZE_STRING);
-        $ampere = filter_input(INPUT_POST, 'ampere', FILTER_SANITIZE_STRING);
+   if (isset($_GET['watt'], $_GET['voltampere'], $_GET['cosphi'], $_GET['volt'], $_GET['ampere'])) {
+        $watt = filter_input(INPUT_GET, 'watt', FILTER_SANITIZE_STRING);
+        $voltampere= filter_input(INPUT_GET, 'voltampere', FILTER_SANITIZE_STRING);
+        $cosphi= filter_input(INPUT_GET, 'cosphi', FILTER_SANITIZE_STRING);
+        $volt = filter_input(INPUT_GET, 'volt', FILTER_SANITIZE_STRING);
+        $ampere = filter_input(INPUT_GET, 'ampere', FILTER_SANITIZE_STRING);
 
         if (empty($msg)) {
   

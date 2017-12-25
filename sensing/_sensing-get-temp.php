@@ -3,8 +3,8 @@
 
    $core = Core::getInstance();
 
-   if (isset($_POST['temp'])) {
-        $temp = filter_input(INPUT_POST, 'temp', FILTER_SANITIZE_STRING);
+   if (isset($_GET['temp'])) {
+        $temp = filter_input(INPUT_GET, 'temp', FILTER_SANITIZE_STRING);
 
         if (empty($msg)) {
   
