@@ -64,7 +64,7 @@ void loop(){
   SendDataWebPLTMHPhaseT();
   suhu();
   SendSuhu();
-  delay(1200);  // Delay Pengiriman Data ke Web Server
+  delay(50);  // Delay Pengiriman Data ke Web Server
 }
 
 void BacaDataPMPhaseR(){
